@@ -26,7 +26,7 @@ class DemandeDevisForm(forms.ModelForm):
                     "class": "form-control",
                     "type": "tel",
                     "inputmode": "tel",
-                    "placeholder": "Ex. 07 49 52 32 96",
+                    "placeholder": "Ex. 05 85 36 66 65",
                     "autocomplete": "tel",
                     "aria-describedby": "error-id_telephone",
                 }
