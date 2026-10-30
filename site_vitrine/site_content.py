@@ -22,8 +22,8 @@ BUSINESS = {
         "installation sanitaire et rénovation de salle de bain. Demande "
         "d’intervention simple et travail garanti par Rufus Plomberie."
     ),
-    "phone_display": "+225 07 49 52 32 96",
-    "phone_href": "+2250749523296",
+    "phone_display": "+225 05 85 36 66 65",
+    "phone_href": "+2250585366665",
     "whatsapp": "2250749523296",
     "whatsapp_message": (
         "Bonjour Rufus, j'ai besoin d'aide pour un problème de plomberie."
