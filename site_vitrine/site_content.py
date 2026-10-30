@@ -29,7 +29,8 @@ BUSINESS = {
         "Bonjour Rufus, j'ai besoin d'aide pour un problème de plomberie."
     ),
     "email": "contact@rufus-plomberie.ci",
-    "address": "Cocody, Abidjan – Côte d’Ivoire",
+    "street_address": "Abobo Biabou",
+    "address": "Abobo Biabou, Abidjan – Côte d’Ivoire",
     "hours_week": "7j/7 : 7h – 19h",
     "hours_emergency": "Urgences 24h/24, 7j/7",
     "opening_days": [
@@ -46,11 +47,11 @@ BUSINESS = {
     "response_time": "30 min",
     "map_embed_url": (
         "https://www.openstreetmap.org/export/embed.html?"
-        "bbox=-4.0610%2C5.3250%2C-3.9550%2C5.3990&layer=mapnik&marker=5.3620%2C-4.0080"
+        "bbox=-4.0339%2C5.4104%2C-3.9339%2C5.4704&layer=mapnik&marker=5.440399%2C-3.9838821"
     ),
     "map_link": (
-        "https://www.openstreetmap.org/?mlat=5.3620&mlon=-4.0080"
-        "#map=14/5.3620/-4.0080"
+        "https://www.openstreetmap.org/?mlat=5.440399&mlon=-3.9838821"
+        "#map=15/5.440399/-3.9838821"
     ),
     "area_list": [
         "Abidjan",

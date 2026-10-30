@@ -34,7 +34,7 @@ def _build_schema(request):
         "email": BUSINESS["email"],
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Cocody",
+            "streetAddress": BUSINESS["street_address"],
             "addressLocality": BUSINESS["city"],
             "addressRegion": "Abidjan",
             "addressCountry": "CI",
