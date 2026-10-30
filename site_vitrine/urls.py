@@ -1,0 +1,10 @@
+from django.urls import path
+
+from . import views
+
+app_name = "site_vitrine"
+
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("mentions-legales/", views.mentions_legales, name="mentions_legales"),
+]

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mentions légales et confidentialité | {{ business.name }}{% endblock %}
+{% block meta_description %}Mentions légales, informations sur l’éditeur et politique de confidentialité de {{ business.name }} à {{ business.city }}.{% endblock %}
+{% block og_title %}Mentions légales | {{ business.name }}{% endblock %}
+{% block og_description %}Informations légales et traitement des données personnelles de {{ business.name }}.{% endblock %}
+
+{% block content %}
+<section class="legal-hero" aria-labelledby="legal-title">
+    <div class="container">
+        <p class="eyebrow eyebrow--light">Informations légales</p>
+        <h1 id="legal-title">Mentions légales &amp; confidentialité</h1>
+        <p>Transparence sur l’éditeur du site et l’utilisation de vos données personnelles.</p>
+    </div>
+</section>
+
+<div class="container legal-layout">
+    <article class="legal-content">
+        <section aria-labelledby="editeur-title">
+            <h2 id="editeur-title">1. Éditeur du site</h2>
+            <p>
+                Le présent site est édité par <strong>{{ business.name }}</strong>,
+                entreprise de plomberie située à {{ business.address }}.
+            </p>
+            <ul>
+                <li>Téléphone : <a href="tel:{{ business.phone_href }}">{{ business.phone_display }}</a></li>
+                <li>Email : <a href="mailto:{{ business.email }}">{{ business.email }}</a></li>
+                <li>Zone d’intervention : {{ business.areas }}</li>
+                <li>Responsable de la publication : la direction de {{ business.name }}</li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="hebergement-title">
+            <h2 id="hebergement-title">2. Hébergement</h2>
+            <p>
+                Les coordonnées de l’hébergeur doivent être complétées avant la mise
+                en ligne définitive du site, selon le prestataire retenu.
+            </p>
+        </section>
+
+        <section aria-labelledby="propriete-title">
+            <h2 id="propriete-title">3. Propriété intellectuelle</h2>
+            <p>
+                L’ensemble des contenus présents sur ce site (textes, logo, éléments
+                graphiques, photographies et mise en page) est protégé par le droit
+                de la propriété intellectuelle. Toute reproduction ou utilisation,
+                totale ou partielle, sans autorisation écrite préalable est interdite.
+            </p>
+        </section>
+
+        <section aria-labelledby="donnees-title">
+            <h2 id="donnees-title">4. Données personnelles</h2>
+            <p>
+                Le formulaire de demande de service collecte votre nom, votre numéro de téléphone,
+                le type de problème, votre message et votre accord pour être recontacté.
+                Ces informations sont utilisées uniquement pour répondre à votre demande
+                et organiser une éventuelle intervention.
+            </p>
+            <p>
+                Elles sont conservées pendant une durée maximale de douze mois après
+                le dernier contact, sauf obligation légale contraire. Elles ne sont
+                ni vendues ni cédées à des tiers.
+            </p>
+            <p>
+                Vous pouvez demander l’accès, la rectification ou la suppression de vos
+                données en écrivant à
+                <a href="mailto:{{ business.email }}">{{ business.email }}</a>.
+            </p>
+        </section>
+
+        <section aria-labelledby="cookies-title">
+            <h2 id="cookies-title">5. Cookies et services externes</h2>
+            <p>
+                Le site ne dépose pas de cookie publicitaire ni de cookie de mesure
+                d’audience. La police d’écriture est hébergée directement sur le site.
+                La carte de localisation est fournie par OpenStreetMap, qui peut recevoir
+                des données techniques lors de son chargement.
+            </p>
+        </section>
+
+        <section aria-labelledby="responsabilite-title">
+            <h2 id="responsabilite-title">6. Responsabilité</h2>
+            <p>
+                Les informations présentées sur ce site sont fournies à titre indicatif.
+                Un diagnostic sur place permet de confirmer la nature des travaux et
+                leur délai. Le montant est communiqué après l’intervention, selon
+                les travaux réalisés.
+            </p>
+        </section>
+
+        <section aria-labelledby="droit-title">
+            <h2 id="droit-title">7. Droit applicable</h2>
+            <p>
+                Le présent site est soumis au droit ivoirien. Tout litige relatif à son
+                utilisation relève des juridictions compétentes d’Abidjan, sauf
+                disposition légale contraire.
+            </p>
+        </section>
+
+        <p class="legal-content__updated">Dernière mise à jour : {% now "F Y" %}.</p>
+    </article>
+
+    <aside class="legal-aside" aria-label="Coordonnées">
+        <div class="legal-aside__card">
+            <span class="contact-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg></span>
+            <h2>Une question ?</h2>
+            <p>Notre équipe vous répond directement.</p>
+            <a class="btn btn--accent btn--block" href="tel:{{ business.phone_href }}">{{ business.phone_display }}</a>
+            <a class="text-link" href="{% url 'site_vitrine:index' %}">
+                Retour à l’accueil
+                <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+        </div>
+    </aside>
+</div>
+{% endblock %}

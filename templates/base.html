@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#082f49">
+    <meta name="format-detection" content="telephone=yes">
+
+    <title>{% block title %}{{ business.name }} – Plombier à {{ business.city }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ business.meta_description }}{% endblock %}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="{{ business.name }}">
+    <meta property="og:title" content="{% block og_title %}{{ business.name }} – Plombier à {{ business.city }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ business.meta_description }}{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-rufus.jpg' %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Rufus Plomberie – intervention rapide et travail garanti à Abidjan">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ business.name }} – Plombier à {{ business.city }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ business.meta_description }}{% endblock %}">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-rufus.jpg' %}">
+
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="preload" href="{% static 'fonts/poppins-400.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/poppins-800.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block preload %}{% endblock %}
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% include "includes/icons.html" %}
+
+    <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+    <header class="site-header" data-header>
+        <div class="container header__inner">
+            <a class="brand" href="{% url 'site_vitrine:index' %}" aria-label="{{ business.name }} – Accueil">
+                <img class="brand__mark brand__mark--header" src="{% static 'img/logo-rufus.png' %}?v=2" width="120" height="120" alt="">
+                <span class="brand__text">
+                    <strong>{{ business.short_name }}</strong>
+                    <small>Plomberie</small>
+                </span>
+            </a>
+
+            <nav class="main-nav" id="main-nav" aria-label="Navigation principale" data-nav>
+                <ul class="nav__list">
+                    {% for link in nav_links %}
+                    <li>
+                        <a class="nav__link" href="{% url 'site_vitrine:index' %}#{{ link.anchor }}">{{ link.label }}</a>
+                    </li>
+                    {% endfor %}
+                    <li class="nav__mobile-cta">
+                        <a class="btn btn--accent btn--block" href="{% url 'site_vitrine:index' %}#contact">Demander un service</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <a class="header__call" href="tel:{{ business.phone_href }}" aria-label="Appeler {{ business.name }} au {{ business.phone_display }}">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                    <span class="header__call-text">
+                        <strong>Appeler</strong>
+                        <small>{{ business.phone_display }}</small>
+                    </span>
+                </a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-menu-toggle>
+                    <span class="sr-only" data-menu-label>Ouvrir le menu</span>
+                    <svg class="icon menu-toggle__open" aria-hidden="true"><use href="#icon-menu"></use></svg>
+                    <svg class="icon menu-toggle__close" aria-hidden="true"><use href="#icon-close"></use></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="contenu">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__grid">
+            <div class="footer__brand">
+                <a class="brand brand--light" href="{% url 'site_vitrine:index' %}" aria-label="{{ business.name }} – Accueil">
+                    <img class="brand__mark" src="{% static 'img/logo-rufus.png' %}?v=2" width="100" height="100" alt="">
+                    <span class="brand__text">
+                        <strong>{{ business.short_name }}</strong>
+                        <small>Plomberie</small>
+                    </span>
+                </a>
+                <p>
+                    Dépannage, installation et rénovation de plomberie à {{ business.city }}.
+                    Un travail soigné et une équipe disponible pour résoudre vos problèmes.
+                </p>
+                <ul class="socials" aria-label="Réseaux sociaux">
+                    {% for social in business.socials %}
+                    <li>
+                        <a href="{{ social.url }}" aria-label="{{ social.label }} d’{{ business.name }}" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-{{ social.icon }}"></use></svg>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="footer__column">
+                <h2>Navigation</h2>
+                <ul class="footer__links">
+                    {% for link in nav_links %}
+                    <li><a href="{% url 'site_vitrine:index' %}#{{ link.anchor }}">{{ link.label }}</a></li>
+                    {% endfor %}
+                    <li><a href="{% url 'site_vitrine:mentions_legales' %}">Mentions légales</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__column">
+                <h2>Nos services</h2>
+                <ul class="footer__links">
+                    {% for service in services|slice:":5" %}
+                    <li><a href="{% url 'site_vitrine:index' %}#services">{{ service.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="footer__column footer__contact">
+                <h2>Contact</h2>
+                <ul class="footer__contact-list">
+                    <li>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                        <a href="tel:{{ business.phone_href }}">{{ business.phone_display }}</a>
+                    </li>
+                    <li>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-map-pin"></use></svg>
+                        <span>{{ business.address }}</span>
+                    </li>
+                    <li>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
+                        <span>{{ business.hours_week }}<br>{{ business.hours_emergency }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer__bottom">
+            <p>© {% now "Y" %} {{ business.name }}. Tous droits réservés.</p>
+            <div class="footer__legal">
+                <a href="{% url 'site_vitrine:mentions_legales' %}">Mentions légales</a>
+                <span aria-hidden="true">·</span>
+                <a href="{% url 'site_vitrine:index' %}#contact">Nous contacter</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-dock" aria-label="Actions rapides">
+        <a class="mobile-dock__button mobile-dock__button--call" href="tel:{{ business.phone_href }}">
+            <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+            <span>Appeler</span>
+        </a>
+        <a class="mobile-dock__button mobile-dock__button--whatsapp" href="https://wa.me/{{ business.whatsapp }}?text={{ business.whatsapp_message|urlencode }}" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+            <span>WhatsApp</span>
+        </a>
+    </div>
+
+    <button class="back-to-top" type="button" aria-label="Revenir en haut de la page" data-back-to-top hidden>
+        <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
+    </button>
+
+    <script src="{% static 'js/main.js' %}" defer></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
